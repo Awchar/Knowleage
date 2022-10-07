@@ -19,6 +19,9 @@ class Math:
             self.base = base
 
 
+        def Area(self):
+            return self.height*self.base/2
+
     class Square:
         def __init__(self,side):
             self.side = side
@@ -26,6 +29,10 @@ class Math:
         
         def Area(self):
             return self.side*self.side
+        
+        
+        def Volume(self):
+            return self.side*self.side*self.side
 
 
     def Percentage(T=None,O=None,P=None):
@@ -115,7 +122,23 @@ class General_Knowleage:
         for data in datas:
             print(data)
 
-
+    def Test():
+        datas_list = []
+        datas = c.execute('SELECT * FROM General_Knowleage')
+        for data in datas:
+            datas_list.append(data)
+        datas_list = random.sample(datas_list,k=len(datas_list))
+        #print(datas_list)
+        right = 0
+        for data_list in datas_list:
+            ans = input(f"Q.{data_list[0]}: ")
+            if ans == data_list[1]:
+                print('Your Ans Is Correct.\n')
+                right +=1
+            else:
+                print(f"Your Answer Is Wrong Right Ans: {data_list[1]}\n")
+        print('Right Ans: ',str(right))
+        print(f"Your Percentage: {Math.Percentage(T=len(datas_list),O=right)}%\n")
 
 
 class Chemistry:
@@ -132,12 +155,14 @@ class Chemistry:
             element_densitry = input('Element Density: ')
             c.execute('INSERT INTO Periodic_Table(Atomic_Number, Name, Symbol, Melting_Point, Boiling_Point, Discovery, Density) VALUES (?,?,?,?,?,?,?)',(element_atom_number, element,element_symbol, element_melting_point, element_boiling_point, element_discovery, element_densitry))
             conn.commit()
-            
+        
         def Show():
             datas = c.execute('SELECT * FROM Periodic_Table')
             for data in datas:
                 print(data)
-
+        
+        def Test():
+            pass
 
 
 
